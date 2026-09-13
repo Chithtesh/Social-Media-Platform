@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniSocial - Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span>📱</span> MiniSocial
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li id="auth-links" style="display: none;">
+          <a href="login.html" class="active">🔑 Login</a>
+        </li>
+        <li id="user-links" style="display: none;">
+          <button id="logout-btn" class="btn-danger">🚪 Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Login Form -->
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Login to your MiniSocial account</p>
+
+      <div class="error-msg" id="login-error" role="alert"></div>
+      <div class="success-msg" id="login-success" role="status"></div>
+
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label for="login-identifier">Email or Username</label>
+          <input type="text"
+                 id="login-identifier"
+                 placeholder="Enter your email or username"
+                 required
+                 autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password"
+                 id="login-password"
+                 placeholder="Enter your password"
+                 required
+                 autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary">🔑 Login</button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="register.html">Register here</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module">
+    import { initAuthPage } from './js/auth.js';
+    document.addEventListener('DOMContentLoaded', initAuthPage);
+  </script>
+</body>
+</html>

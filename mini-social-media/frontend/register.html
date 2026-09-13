@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniSocial - Register</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span>📱</span> MiniSocial
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li id="auth-links" style="display: none;">
+          <a href="login.html" class="active">🔑 Login</a>
+        </li>
+        <li id="user-links" style="display: none;">
+          <button id="logout-btn" class="btn-danger">🚪 Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Register Form -->
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2>Create Account</h2>
+      <p class="subtitle">Join MiniSocial today</p>
+
+      <div class="error-msg" id="reg-error" role="alert"></div>
+      <div class="success-msg" id="reg-success" role="status"></div>
+
+      <form id="register-form" novalidate>
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text"
+                 id="reg-name"
+                 placeholder="Enter your full name"
+                 required
+                 autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="reg-username">Username</label>
+          <input type="text"
+                 id="reg-username"
+                 placeholder="Choose a unique username"
+                 required
+                 autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input type="email"
+                 id="reg-email"
+                 placeholder="Enter your email"
+                 required
+                 autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password"
+                 id="reg-password"
+                 placeholder="Create a password (min 6 chars)"
+                 required
+                 autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="reg-confirm-password">Confirm Password</label>
+          <input type="password"
+                 id="reg-confirm-password"
+                 placeholder="Confirm your password"
+                 required
+                 autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn-primary">📝 Register</button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Login here</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module">
+    import { initAuthPage } from './js/auth.js';
+    document.addEventListener('DOMContentLoaded', initAuthPage);
+  </script>
+</body>
+</html>

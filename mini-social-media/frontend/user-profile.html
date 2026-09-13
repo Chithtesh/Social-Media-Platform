@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniSocial - User Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span>📱</span> MiniSocial
+      </a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="explore.html">🔍 Explore</a></li>
+        <li><a href="create-post.html">✍️ Create Post</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+        <li><a href="followers.html">👥 Followers</a></li>
+        <li><a href="following.html">➡️ Following</a></li>
+        <li id="auth-links" style="display: none;">
+          <a href="login.html">🔑 Login</a>
+        </li>
+        <li id="user-links" style="display: none;">
+          <button id="logout-btn" class="btn-danger">🚪 Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="profile-page">
+    <div id="profile-header"></div>
+    <div id="profile-posts"></div>
+  </main>
+
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/profile.js"></script>
+  <script type="module">
+    import { initProfilePage, showEditProfileForm, saveProfile, toggleFollow, viewUserProfile } from './js/profile.js';
+    import { toggleLike, toggleComments, addComment, deleteComment, deletePost } from './js/feed.js';
+    import { unfollowUser } from './js/follow.js';
+
+    document.addEventListener('DOMContentLoaded', initProfilePage);
+
+    window.toggleMobileMenu = function() {
+      document.getElementById('nav-links').classList.toggle('open');
+    };
+    window.viewUserProfile = viewUserProfile;
+    window.showEditProfile = showEditProfileForm;
+    window.saveProfile = saveProfile;
+    window.toggleFollow = toggleFollow;
+    window.toggleLike = toggleLike;
+    window.toggleComments = toggleComments;
+    window.addComment = addComment;
+    window.deleteComment = deleteComment;
+    window.deletePost = deletePost;
+    window.unfollowUser = unfollowUser;
+  </script>
+</body>
+</html>

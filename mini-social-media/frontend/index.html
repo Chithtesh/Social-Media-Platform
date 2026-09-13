@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniSocial - Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span>📱</span> MiniSocial
+      </a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">🏠 Home</a></li>
+        <li><a href="explore.html">🔍 Explore</a></li>
+        <li><a href="create-post.html">✍️ Create Post</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+        <li><a href="followers.html">👥 Followers</a></li>
+        <li><a href="following.html">➡️ Following</a></li>
+        <li id="auth-links" style="display: none;">
+          <a href="login.html">🔑 Login</a>
+        </li>
+        <li id="user-links" style="display: none;">
+          <button id="logout-btn" class="btn-danger">🚪 Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="feed-page">
+    <!-- Create Post Mini -->
+    <div class="create-post-mini">
+      <img src="https://ui-avatars.com/api/?name=User&background=random"
+           class="avatar"
+           id="current-user-avatar"
+           alt="Your avatar">
+      <input type="text"
+             placeholder="What's on your mind?"
+             onclick="window.location.href='create-post.html'"
+             readonly
+             aria-label="Create a new post">
+    </div>
+
+    <!-- Feed Posts -->
+    <div id="feed-posts"></div>
+  </main>
+
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/feed.js"></script>
+  <script type="module">
+    import { getCurrentUser } from './js/api.js';
+    import { initFeedPage, viewUserProfile, toggleLike, toggleComments, addComment, deleteComment, deletePost } from './js/feed.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const currentUser = getCurrentUser();
+      if (currentUser) {
+        const avatar = document.getElementById('current-user-avatar');
+        if (avatar) {
+          avatar.src = currentUser.profilePicture || 'https://ui-avatars.com/api/?name=User&background=random';
+        }
+      }
+      initFeedPage();
+    });
+
+    window.toggleMobileMenu = function() {
+      document.getElementById('nav-links').classList.toggle('open');
+    };
+    window.viewUserProfile = viewUserProfile;
+    window.toggleLike = toggleLike;
+    window.toggleComments = toggleComments;
+    window.addComment = addComment;
+    window.deleteComment = deleteComment;
+    window.deletePost = deletePost;
+  </script>
+</body>
+</html>

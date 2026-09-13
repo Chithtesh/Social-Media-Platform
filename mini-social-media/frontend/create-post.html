@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniSocial - Create Post</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span>📱</span> MiniSocial
+      </a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="explore.html">🔍 Explore</a></li>
+        <li><a href="create-post.html" class="active">✍️ Create Post</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+        <li><a href="followers.html">👥 Followers</a></li>
+        <li><a href="following.html">➡️ Following</a></li>
+        <li id="auth-links" style="display: none;">
+          <a href="login.html">🔑 Login</a>
+        </li>
+        <li id="user-links" style="display: none;">
+          <button id="logout-btn" class="btn-danger">🚪 Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="create-post-page">
+    <div class="create-post-card">
+      <h2>Create a New Post</h2>
+
+      <div class="error-msg" id="post-error" role="alert"></div>
+      <div class="success-msg" id="post-success" role="status"></div>
+
+      <form id="create-post-form" novalidate>
+        <div class="form-group">
+          <label for="post-content">What's on your mind?</label>
+          <textarea id="post-content"
+                    placeholder="Share your thoughts with the world..."
+                    maxlength="500"
+                    required></textarea>
+          <small style="color: var(--text-lighter); font-size: 0.8rem; margin-top: 6px; display: block;">Max 500 characters</small>
+        </div>
+        <div class="form-group">
+          <label for="post-image">Image URL (optional)</label>
+          <input type="text"
+                 id="post-image"
+                 placeholder="https://example.com/image.jpg"
+                 oninput="showImagePreview()">
+          <div class="image-preview" id="image-preview">
+            <img id="preview-img" src="" alt="Preview">
+          </div>
+        </div>
+        <div class="form-actions">
+          <a href="index.html" class="btn btn-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary">📤 Publish</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script type="module" src="js/api.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/posts.js"></script>
+  <script type="module">
+    import { initCreatePostPage, showImagePreview } from './js/posts.js';
+    document.addEventListener('DOMContentLoaded', initCreatePostPage);
+
+    window.showImagePreview = showImagePreview;
+    window.toggleMobileMenu = function() {
+      document.getElementById('nav-links').classList.toggle('open');
+    };
+  </script>
+</body>
+</html>
